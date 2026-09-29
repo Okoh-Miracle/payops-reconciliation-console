@@ -54,15 +54,3 @@ Reporting       Ops Queue
                Audit Log
 ```
 
-## Key controls to discuss in an interview
-
-- Idempotency for duplicate webhook/event delivery
-- Immutable transaction identifiers
-- Currency-aware matching
-- Fee-rule versioning
-- Clear exception ownership
-- SLA monitoring
-- Role-based access
-- Audit events for every material operational action
-- Reconciliation at both record and aggregate levels
-- Safe handling of reversals/refunds

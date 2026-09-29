@@ -55,7 +55,7 @@ MATCHED          EXCEPTION
 
 ## Live Demo
 
-🚀 **[View the live PayOps Reconciliation Console](https://okoh-miracle.github.io/payops-reconciliation-console/)**
+**[View the live PayOps Reconciliation Console](https://okoh-miracle.github.io/payops-reconciliation-console/)**
 
 Explore the live prototype to review transaction monitoring, exception management, reconciliation workflows, and audit logging using synthetic payment data.
 

@@ -4,10 +4,6 @@
 
 A browser-based payment operations console that demonstrates how a fintech operations team could monitor transaction health, reconcile processor records against an internal ledger, manage exceptions, and maintain an audit trail.
 
-## Why this project exists
-
-This project is intentionally designed as a portfolio artifact for Technical Operations, Business Systems, Implementation, Product Operations, and fintech operations applications.
-
 It demonstrates:
 
 - Transaction lifecycle thinking
@@ -72,19 +68,6 @@ python3 -m http.server 8000
 ```
 
 Then visit `http://localhost:8000`.
-
-## Portfolio talking points
-
-A strong interview walkthrough focuses on the operational reasoning rather than the UI:
-
-1. What problem does reconciliation solve?
-2. What records are being compared?
-3. What matching rule is used and why?
-4. Which failures become exceptions?
-5. How are exceptions prioritized?
-6. What needs to be auditable?
-7. Where would automation or human review be appropriate?
-8. What would need to change before production use?
 
 ## Next production-style extension
 

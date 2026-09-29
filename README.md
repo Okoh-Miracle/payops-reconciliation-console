@@ -1,6 +1,6 @@
 # PayOps Reconciliation Console
 
-**Fintech Systems Lab — synthetic portfolio project by Miracle Okoh**
+**Fintech Systems Lab — portfolio project by Miracle Okoh**
 
 A browser-based payment operations console that demonstrates how a fintech operations team could monitor transaction health, reconcile processor records against an internal ledger, manage exceptions, and maintain an audit trail.
 
@@ -53,13 +53,19 @@ MATCHED          EXCEPTION
 - Pending beyond SLA
 - Refund mismatch
 
-## Run locally
+## Live Demo
+
+🚀 **[View the live PayOps Reconciliation Console](https://okoh-miracle.github.io/payops-reconciliation-console/)**
+
+Explore the live prototype to review transaction monitoring, exception management, reconciliation workflows, and audit logging using synthetic payment data.
+
+## Run Locally
 
 No build step is required.
 
-1. Download or clone the project.
+1. Download or clone the repository.
 2. Open `index.html` in a browser.
-3. Use the left navigation to explore Overview, Transactions, Exceptions, Reconciliation and Audit Log.
+3. Use the left navigation to explore **Overview, Transactions, Exceptions, Reconciliation, and Audit Log**.
 
 For a local server:
 
@@ -67,7 +73,10 @@ For a local server:
 python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Then visit:
+
+`http://localhost:8000`
+
 
 ## Next production-style extension
 

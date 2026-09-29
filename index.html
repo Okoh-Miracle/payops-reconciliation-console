@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PayOps Reconciliation Console — synthetic fintech operations case study by Miracle Okoh." />
+  <title>PayOps Reconciliation Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">P</div>
+      <div>
+        <div class="brand-name">PayOps</div>
+        <div class="brand-sub">Operations Console</div>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <button class="nav-item active" data-view="overview">Overview</button>
+      <button class="nav-item" data-view="transactions">Transactions</button>
+      <button class="nav-item" data-view="exceptions">Exceptions</button>
+      <button class="nav-item" data-view="reconciliation">Reconciliation</button>
+      <button class="nav-item" data-view="audit">Audit Log</button>
+    </nav>
+    <div class="sidebar-note">
+      <div class="eyebrow">Portfolio project</div>
+      <p>Synthetic payment data for demonstrating transaction operations, reconciliation, exception handling and data quality.</p>
+    </div>
+    <div class="sidebar-foot">Built by <strong>Miracle Okoh</strong></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">FINTECH SYSTEMS LAB</div>
+        <h1 id="pageTitle">Payment Operations Overview</h1>
+        <p id="pageSubtitle">Monitor payment health, operational exceptions and reconciliation status.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="ghost-btn" id="exportBtn">Export CSV</button>
+        <span class="env-pill">SYNTHETIC DATA</span>
+      </div>
+    </header>
+
+    <section id="overview" class="view active-view">
+      <div class="kpi-grid" id="kpis"></div>
+
+      <div class="grid two-col">
+        <section class="panel chart-panel">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">VOLUME</div>
+              <h2>Transaction volume by day</h2>
+            </div>
+            <span class="muted">Last 7 days</span>
+          </div>
+          <div class="bar-chart" id="volumeChart"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">HEALTH</div>
+              <h2>Exception mix</h2>
+            </div>
+          </div>
+          <div id="exceptionMix" class="mix-list"></div>
+        </section>
+      </div>
+
+      <div class="grid two-col">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">ATTENTION</div>
+              <h2>Open exception queue</h2>
+            </div>
+            <button class="text-btn" data-goto="exceptions">View all</button>
+          </div>
+          <div id="openExceptions" class="compact-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">ACTIVITY</div>
+              <h2>Recent audit events</h2>
+            </div>
+            <button class="text-btn" data-goto="audit">Audit log</button>
+          </div>
+          <div id="recentAudit" class="compact-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="transactions" class="view">
+      <section class="panel">
+        <div class="panel-head responsive-head">
+          <div>
+            <div class="eyebrow">TRANSACTION LEDGER</div>
+            <h2>Transaction records</h2>
+            <p class="muted">Filter synthetic records to inspect lifecycle status and reconciliation outcomes.</p>
+          </div>
+        </div>
+        <div class="filters">
+          <input id="txnSearch" type="search" placeholder="Search transaction, merchant or reference" />
+          <select id="statusFilter"><option value="all">All statuses</option><option>SUCCESS</option><option>FAILED</option><option>PENDING</option><option>REFUNDED</option></select>
+          <select id="channelFilter"><option value="all">All channels</option><option>POS</option><option>WEB</option><option>TRANSFER</option><option>API</option></select>
+          <select id="reconFilter"><option value="all">All reconciliation</option><option>MATCHED</option><option>EXCEPTION</option><option>PENDING</option></select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Transaction</th><th>Merchant</th><th>Amount</th><th>Channel</th><th>Status</th><th>Reconciliation</th><th>Created</th></tr></thead>
+            <tbody id="txnTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section id="exceptions" class="view">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">EXCEPTION MANAGEMENT</div>
+            <h2>Exception queue</h2>
+            <p class="muted">Prioritize issues by operational impact and age.</p>
+          </div>
+          <div id="exceptionSummary" class="summary-inline"></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Exception</th><th>Transaction</th><th>Type</th><th>Severity</th><th>Age</th><th>Owner</th><th>Action</th></tr></thead>
+            <tbody id="exceptionTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section id="reconciliation" class="view">
+      <div class="kpi-grid" id="reconKpis"></div>
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">DAILY CONTROL</div>
+            <h2>Processor ↔ internal ledger reconciliation</h2>
+            <p class="muted">Matching rule: transaction ID + currency + amount. Fees are checked separately.</p>
+          </div>
+        </div>
+        <div id="reconBreakdown" class="recon-grid"></div>
+      </section>
+    </section>
+
+    <section id="audit" class="view">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">CONTROL TRAIL</div>
+            <h2>Audit log</h2>
+            <p class="muted">Synthetic system events showing traceability across operational actions.</p>
+          </div>
+        </div>
+        <div id="auditList" class="audit-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="detailDialog" class="detail-dialog">
+    <div id="dialogContent"></div>
+    <button class="close-dialog" id="closeDialog" aria-label="Close">×</button>
+  </dialog>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

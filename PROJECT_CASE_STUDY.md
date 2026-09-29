@@ -1,4 +1,4 @@
-# Portfolio Case Study Draft
+# Portfolio Case Study
 
 ## PayOps Reconciliation Console
 ### A synthetic payment-operations system for monitoring transaction health and reconciliation exceptions
